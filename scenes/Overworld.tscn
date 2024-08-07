@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1l3pu10j4d2c"]
+
+[ext_resource type="Script" path="res://scripts/Level.cs" id="1_fflks"]
+[ext_resource type="Texture2D" uid="uid://2rkjskl1qtbc" path="res://sprites/bgScaled.png" id="2_nynwc"]
+[ext_resource type="PackedScene" uid="uid://dbpi3ei1hiwty" path="res://scenes/House.tscn" id="3_kijuo"]
+[ext_resource type="PackedScene" uid="uid://ck6p7q6uy5ryc" path="res://scenes/Player.tscn" id="4_c4t6i"]
+
+[node name="Overworld" type="Node2D"]
+script = ExtResource("1_fflks")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_repeat = 2
+offset_left = -584.0
+offset_top = -183.0
+offset_right = 7416.0
+offset_bottom = 5817.0
+scale = Vector2(0.415, 0.415)
+texture = ExtResource("2_nynwc")
+stretch_mode = 1
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.172549, 0.172549, 0.172549, 1)
+
+[node name="House" parent="." instance=ExtResource("3_kijuo")]
+position = Vector2(213, 144)
+
+[node name="Player" parent="." instance=ExtResource("4_c4t6i")]
+position = Vector2(60, 140)

@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbpi3ei1hiwty"]
+
+[ext_resource type="Texture2D" uid="uid://gil7yxmwb08l" path="res://sprites/DoorClosed.png" id="1_r2eua"]
+[ext_resource type="Texture2D" uid="uid://brwuwvleiigws" path="res://sprites/DoorOpen.png" id="2_q66m3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5rsvo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_r2eua")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_q66m3")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_6iqoe"]
+polygon = PackedVector2Array(-47, 93, -44, 103, -29, 103, 33, 102, 39, 90, 25, 83, 1, 83, -16, 86, -36, 92)
+
+[node name="House" type="Node2D"]
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.15, 2.15)
+sprite_frames = SubResource("SpriteFrames_5rsvo")
+animation = &"closed"
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_6iqoe")
