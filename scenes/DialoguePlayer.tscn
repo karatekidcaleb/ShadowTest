@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://cyy4asofp6wtm"]
+
+[ext_resource type="Script" path="res://scripts/DialoguePlayer.cs" id="1_qp2v6"]
+[ext_resource type="Texture2D" uid="uid://ce6n8i4xclswm" path="res://assets/sprites/ui/dialogueBackgroundBig.png" id="2_pmkrp"]
+[ext_resource type="FontFile" uid="uid://be447ro04o3a5" path="res://assets/fonts/m3x6.ttf" id="3_o1q1q"]
+[ext_resource type="AudioStream" uid="uid://bnq07s8rvamtd" path="res://assets/audio/lebron-james-01.mp3" id="4_i7hxb"]
+[ext_resource type="AudioStream" uid="uid://dnkogk77r7gy4" path="res://assets/audio/lebron-james-02.mp3" id="5_tqgpm"]
+[ext_resource type="AudioStream" uid="uid://kirfmhd5v4th" path="res://assets/audio/lebron-james-03.mp3" id="6_e8lol"]
+[ext_resource type="AudioStream" uid="uid://ckc3mx83f1kj6" path="res://assets/audio/lebron-james-04.mp3" id="7_qu67y"]
+[ext_resource type="AudioStream" uid="uid://cf6ft660bgiqd" path="res://assets/audio/lebron-james-05.mp3" id="8_quu4t"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bnvy0"]
+line_spacing = 12.0
+font = ExtResource("3_o1q1q")
+font_size = 130
+outline_color = Color(0.0470588, 0.313726, 0.560784, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0.580392, 0.72549)
+shadow_offset = Vector2(0, 0)
+
+[node name="DialoguePlayer" type="CanvasLayer"]
+script = ExtResource("1_qp2v6")
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -750.0
+offset_top = -600.0
+offset_right = 750.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_pmkrp")
+expand_mode = 1
+
+[node name="TextLabel" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -675.0
+offset_top = -539.0
+offset_right = 678.0
+offset_bottom = -69.0
+grow_horizontal = 2
+grow_vertical = 0
+label_settings = SubResource("LabelSettings_bnvy0")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="AudioMixer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Snippet1" type="AudioStreamPlayer" parent="AudioMixer"]
+stream = ExtResource("4_i7hxb")
+
+[node name="Snippet2" type="AudioStreamPlayer" parent="AudioMixer"]
+stream = ExtResource("5_tqgpm")
+
+[node name="Snippet3" type="AudioStreamPlayer" parent="AudioMixer"]
+stream = ExtResource("6_e8lol")
+
+[node name="Snippet4" type="AudioStreamPlayer" parent="AudioMixer"]
+stream = ExtResource("7_qu67y")
+
+[node name="Snippet5" type="AudioStreamPlayer" parent="AudioMixer"]
+stream = ExtResource("8_quu4t")

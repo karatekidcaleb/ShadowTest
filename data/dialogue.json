@@ -1,0 +1,14 @@
+[
+	{
+		"Key": "Snow",
+		"Data": ["Some more snow", "And yet you think you can also see...", "All around you is snow"]
+	},
+	{
+		"Key": "fuckme",
+		"Data": ["ChoiceA", "ChoiceB"]
+	},
+	{
+		"Key": "shit",
+		"Data": ["fuck"]
+	}
+]

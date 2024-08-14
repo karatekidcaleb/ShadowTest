@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://4u3f20uwdhb0"]
+
+[ext_resource type="Texture2D" uid="uid://rogetn3nmvk6" path="res://assets/sprites/environment/spinning_wheel.png" id="1_ccs3f"]
+[ext_resource type="Texture2D" uid="uid://dnd8dash44tlp" path="res://assets/sprites/environment/spinning_wheel1.png" id="2_66whc"]
+[ext_resource type="Texture2D" uid="uid://bf33ek7uc3jx6" path="res://assets/sprites/environment/spinning_wheel2.png" id="3_pbadb"]
+[ext_resource type="Texture2D" uid="uid://4sdhjmdl5qbs" path="res://assets/sprites/environment/spinning_wheel3.png" id="4_gbxup"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x6k55"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ccs3f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_66whc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_pbadb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gbxup")
+}],
+"loop": true,
+"name": &"active",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ccs3f")
+}],
+"loop": true,
+"name": &"inactive",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nbdpx"]
+size = Vector2(164, 160)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_86eca"]
+polygon = PackedVector2Array(-37, 70, -31, 63, -37, 68, -42, 60, -42, 60)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_exuqj"]
+polygon = PackedVector2Array(53, 87, 57, 87, 58, 81)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0nf2m"]
+polygon = PackedVector2Array(38, 45, 40, 48, 40, 46)
+
+[node name="SpinningWheel" type="Node2D"]
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.135, 0.135)
+sprite_frames = SubResource("SpriteFrames_x6k55")
+animation = &"active"
+autoplay = "active"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-6, 18)
+shape = SubResource("RectangleShape2D_nbdpx")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_86eca")
+occluder_light_mask = 2
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_exuqj")
+occluder_light_mask = 2
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_0nf2m")
+occluder_light_mask = 2

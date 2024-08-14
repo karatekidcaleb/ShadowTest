@@ -1,28 +1,107 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1l3pu10j4d2c"]
+[gd_scene load_steps=12 format=3 uid="uid://c1l3pu10j4d2c"]
 
 [ext_resource type="Script" path="res://scripts/Level.cs" id="1_fflks"]
-[ext_resource type="Texture2D" uid="uid://2rkjskl1qtbc" path="res://sprites/bgScaled.png" id="2_nynwc"]
+[ext_resource type="Texture2D" uid="uid://biado3xb43nfa" path="res://assets/sprites/environment/bgLarge.png" id="2_l44rq"]
 [ext_resource type="PackedScene" uid="uid://dbpi3ei1hiwty" path="res://scenes/House.tscn" id="3_kijuo"]
-[ext_resource type="PackedScene" uid="uid://ck6p7q6uy5ryc" path="res://scenes/Player.tscn" id="4_c4t6i"]
+[ext_resource type="PackedScene" uid="uid://dloyo4gev3uyo" path="res://scenes/Player.tscn" id="5_qfvvf"]
+[ext_resource type="PackedScene" uid="uid://bfw31q7b87gt8" path="res://scenes/Door.tscn" id="5_ug13c"]
+[ext_resource type="PackedScene" uid="uid://cgusnui4qhs7v" path="res://scenes/DialogueArea.tscn" id="6_k7ej1"]
+[ext_resource type="PackedScene" uid="uid://cyy4asofp6wtm" path="res://scenes/DialoguePlayer.tscn" id="7_h5xxw"]
+[ext_resource type="PackedScene" uid="uid://d3xrg0dn378i4" path="res://scenes/Tree.tscn" id="8_ku2k5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_id3xq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6uacg"]
+radius = 38.0526
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_quasw"]
+size = Vector2(300, 273)
 
 [node name="Overworld" type="Node2D"]
 script = ExtResource("1_fflks")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 texture_repeat = 2
 offset_left = -584.0
 offset_top = -183.0
 offset_right = 7416.0
 offset_bottom = 5817.0
 scale = Vector2(0.415, 0.415)
-texture = ExtResource("2_nynwc")
+texture = ExtResource("2_l44rq")
 stretch_mode = 1
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.172549, 0.172549, 0.172549, 1)
+color = Color(0.513726, 0.513726, 0.356863, 1)
 
 [node name="House" parent="." instance=ExtResource("3_kijuo")]
 position = Vector2(213, 144)
 
-[node name="Player" parent="." instance=ExtResource("4_c4t6i")]
-position = Vector2(60, 140)
+[node name="DoorToHouse" parent="." instance=ExtResource("5_ug13c")]
+position = Vector2(215.66, 136.035)
+connected_room = "Inside"
+
+[node name="CollisionShape2D" parent="DoorToHouse" index="0"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_id3xq")
+
+[node name="Beebop" parent="." instance=ExtResource("5_qfvvf")]
+position = Vector2(441, 277)
+collision_layer = 3
+
+[node name="DialogueAreaLamp" parent="." instance=ExtResource("6_k7ej1")]
+position = Vector2(360, 273)
+collision_layer = 2
+dialogue_key = "Snow"
+
+[node name="CollisionShape2D" parent="DialogueAreaLamp" index="0"]
+shape = SubResource("CircleShape2D_6uacg")
+
+[node name="Camera" type="Camera2D" parent="."]
+
+[node name="DialogueArea" parent="." instance=ExtResource("6_k7ej1")]
+position = Vector2(755, 147)
+collision_layer = 2
+dialogue_key = "fuckme"
+
+[node name="CollisionShape2D" parent="DialogueArea" index="0"]
+position = Vector2(140, 126.5)
+shape = SubResource("RectangleShape2D_quasw")
+
+[node name="Forest" type="Node2D" parent="."]
+
+[node name="Tree" parent="Forest" instance=ExtResource("8_ku2k5")]
+position = Vector2(441, 166)
+
+[node name="Tree2" parent="Forest" instance=ExtResource("8_ku2k5")]
+position = Vector2(596, 253)
+
+[node name="Tree3" parent="Forest" instance=ExtResource("8_ku2k5")]
+position = Vector2(652, 109)
+
+[node name="Tree4" parent="Forest" instance=ExtResource("8_ku2k5")]
+position = Vector2(617, -23)
+
+[node name="Tree5" parent="Forest" instance=ExtResource("8_ku2k5")]
+position = Vector2(700, 30)
+
+[node name="Tree6" parent="Forest" instance=ExtResource("8_ku2k5")]
+position = Vector2(883, 106)
+
+[node name="Tree7" parent="Forest" instance=ExtResource("8_ku2k5")]
+position = Vector2(1178, 167)
+
+[node name="Tree8" parent="Forest" instance=ExtResource("8_ku2k5")]
+position = Vector2(1370, -53)
+
+[node name="Tree9" parent="Forest" instance=ExtResource("8_ku2k5")]
+position = Vector2(1191, -152)
+
+[node name="Tree10" parent="Forest" instance=ExtResource("8_ku2k5")]
+position = Vector2(-169, 268)
+
+[node name="DialoguePlayer" parent="." instance=ExtResource("7_h5xxw")]
+scene_text_file = "res://data/dialogue.json"
+
+[editable path="DoorToHouse"]
+[editable path="DialogueAreaLamp"]
+[editable path="DialogueArea"]

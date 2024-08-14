@@ -3,6 +3,8 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
+	[Export]
+	public int Health;
 	public float Speed = 200.0f;
 	public const float JumpVelocity = -400.0f;
 
@@ -10,6 +12,30 @@ public partial class Player : CharacterBody2D
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
 	public override void _PhysicsProcess(double delta)
+	{
+		HandlePlayerMovement();
+		MoveAndSlide();
+	}
+
+    public override void _Ready()
+    {
+        this.Health = 100;
+    }
+
+    public override void _Process(double delta)
+    {
+		if(Health <=0)
+		{
+			Die();
+		}
+    }
+
+	public void Die()
+	{
+		GD.Print("ded");
+	}
+
+	private void HandlePlayerMovement()
 	{
 		Vector2 velocity = Velocity;
 
@@ -43,8 +69,6 @@ public partial class Player : CharacterBody2D
 		}
 		Speed = Input.IsActionPressed("run") ? 300 : 200;
 		velocity = direction * Speed;
-
 		Velocity = velocity;
-		MoveAndSlide();
 	}
 }

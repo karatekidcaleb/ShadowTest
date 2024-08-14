@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3xrg0dn378i4"]
+
+[ext_resource type="Script" path="res://scripts/Tree.cs" id="1_v0jag"]
+[ext_resource type="Texture2D" uid="uid://br453ohqo5ccp" path="res://assets/sprites/environment/tree1.png" id="2_f3m6y"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fsqcj"]
+polygon = PackedVector2Array(17, 26, 24, 29, 15, 20, 10, 17, 5, 21, -14, 18, -18, 28, -13, 24, -11, 29, -5, 21, -4, 29, 4, 29, 2, 24, 8, 28, 12, 29, 9, 23, 10, 20)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_patwc"]
+radius = 7.0
+height = 36.0
+
+[node name="Tree" type="Node2D"]
+position = Vector2(5, -30)
+script = ExtResource("1_v0jag")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 2
+texture_filter = 1
+position = Vector2(11, -51)
+scale = Vector2(2.505, 2.505)
+texture = ExtResource("2_f3m6y")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(0, 7)
+occluder = SubResource("OccluderPolygon2D_fsqcj")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="LightOccluder2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LightOccluder2D/StaticBody2D"]
+position = Vector2(2, 27)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_patwc")

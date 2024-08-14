@@ -3,8 +3,20 @@
 [ext_resource type="Script" path="res://scripts/Door.cs" id="1_8ajxv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1mh5w"]
+radius = 20.3961
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c577u"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"house",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"secretcave",
+"speed": 5.0
+}]
 
 [node name="Door" type="Area2D"]
 script = ExtResource("1_8ajxv")
@@ -14,3 +26,6 @@ shape = SubResource("CircleShape2D_1mh5w")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_c577u")
+animation = &"secretcave"
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

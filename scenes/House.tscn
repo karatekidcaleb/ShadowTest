@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbpi3ei1hiwty"]
+[gd_scene load_steps=9 format=3 uid="uid://dbpi3ei1hiwty"]
 
-[ext_resource type="Texture2D" uid="uid://gil7yxmwb08l" path="res://sprites/DoorClosed.png" id="1_r2eua"]
-[ext_resource type="Texture2D" uid="uid://brwuwvleiigws" path="res://sprites/DoorOpen.png" id="2_q66m3"]
+[ext_resource type="Script" path="res://scripts/House.cs" id="1_og2wb"]
+[ext_resource type="Texture2D" uid="uid://gil7yxmwb08l" path="res://assets/sprites/environment/DoorClosed.png" id="1_r2eua"]
+[ext_resource type="Texture2D" uid="uid://brwuwvleiigws" path="res://assets/sprites/environment/DoorOpen.png" id="3_1tckw"]
+[ext_resource type="AudioStream" uid="uid://cmgqumjys3j5u" path="res://assets/audio/creak1.mp3" id="4_odnyo"]
+[ext_resource type="AudioStream" uid="uid://qe5s1ou5ju58" path="res://assets/audio/creak2.mp3" id="5_4ye0m"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5rsvo"]
 animations = [{
@@ -15,7 +18,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_q66m3")
+"texture": ExtResource("3_1tckw")
 }],
 "loop": true,
 "name": &"open",
@@ -23,14 +26,44 @@ animations = [{
 }]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_6iqoe"]
-polygon = PackedVector2Array(-47, 93, -44, 103, -29, 103, 33, 102, 39, 90, 25, 83, 1, 83, -16, 86, -36, 92)
+polygon = PackedVector2Array(-47, 93, -44, 103, -29, 103, 36, 104, 39, 90, 34, 103, 6, 102, -16, 101, -40, 103)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f7byk"]
+size = Vector2(135, 45)
 
 [node name="House" type="Node2D"]
+script = ExtResource("1_og2wb")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(2.15, 2.15)
+texture_filter = 1
+position = Vector2(-1, -119)
+scale = Vector2(2.53, 2.53)
 sprite_frames = SubResource("SpriteFrames_5rsvo")
 animation = &"closed"
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
+position = Vector2(3.2, -102.8)
 occluder = SubResource("OccluderPolygon2D_6iqoe")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-19, 1, -42, 0, -45, -21, -29, -26, -5, -28, 14, -27, 28, -26, 39, -20, 36, 0, 16, 1, 17, -15, -19, -15)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-4.5, 8.5)
+shape = SubResource("RectangleShape2D_f7byk")
+
+[node name="OpenDoor" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_odnyo")
+
+[node name="CloseDoor" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_4ye0m")
+
+[connection signal="area_entered" from="Area2D" to="." method="OnAreaEntered"]
+[connection signal="area_exited" from="Area2D" to="." method="OnAreaExited"]
