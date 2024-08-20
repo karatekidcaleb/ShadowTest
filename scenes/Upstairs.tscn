@@ -1,0 +1,103 @@
+[gd_scene load_steps=15 format=3 uid="uid://dquvxg41jt433"]
+
+[ext_resource type="Texture2D" uid="uid://cayd7pwrju0e3" path="res://assets/sprites/environment/Upstairs.png" id="1_sglnn"]
+[ext_resource type="Script" path="res://scripts/Level.cs" id="1_wegbc"]
+[ext_resource type="PackedScene" uid="uid://dloyo4gev3uyo" path="res://scenes/Player.tscn" id="2_a54xa"]
+[ext_resource type="PackedScene" uid="uid://cyy4asofp6wtm" path="res://scenes/DialoguePlayer.tscn" id="3_bfr6s"]
+[ext_resource type="PackedScene" uid="uid://cgq1qim5nvxy6" path="res://scenes/Stairs.tscn" id="4_qeja1"]
+[ext_resource type="Texture2D" uid="uid://dbeg2f7f4jxnr" path="res://assets/sprites/environment/stairs2.png" id="5_7uhpi"]
+[ext_resource type="Texture2D" uid="uid://uic8drpdspd5" path="res://assets/sprites/environment/emptypainting.png" id="6_ygo2q"]
+[ext_resource type="Texture2D" uid="uid://burudrfkohf3l" path="res://assets/sprites/environment/filledpainting.png" id="7_4kn8s"]
+[ext_resource type="PackedScene" uid="uid://bfw31q7b87gt8" path="res://scenes/Door.tscn" id="8_q0fbj"]
+[ext_resource type="PackedScene" uid="uid://cgusnui4qhs7v" path="res://scenes/DialogueArea.tscn" id="9_ner3r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7dtt2"]
+size = Vector2(2.37312, 28.6091)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7n2im"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ygo2q")
+}],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_4kn8s")
+}],
+"loop": true,
+"name": &"full",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7sp6h"]
+size = Vector2(91, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0f1qf"]
+size = Vector2(158, 49)
+
+[node name="Upstairs" type="Node2D"]
+script = ExtResource("1_wegbc")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+light_mask = 3
+visibility_layer = 3
+z_index = -330
+color = Color(0.168627, 0.168627, 0.168627, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -1000
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_sglnn")
+
+[node name="Beebop" parent="." instance=ExtResource("2_a54xa")]
+position = Vector2(526, 432)
+scale = Vector2(2.64, 2.64)
+collision_layer = 3
+
+[node name="DialoguePlayer" parent="." instance=ExtResource("3_bfr6s")]
+scene_text_file = "res://data/dialogue.json"
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2(1509, 956.5)
+scale = Vector2(7.585, 7.585)
+shape = SubResource("RectangleShape2D_7dtt2")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
+polygon = PackedVector2Array(439, 307, 1540, 269, 1617, 328, 1661, 1077, 360, 1075, 368, 394, 419, 318, 351, 307, 307, 682, 330, 1149, 1797, 1124, 1714, 299, 1517, 212, 368, 295)
+
+[node name="Stairs" parent="." instance=ExtResource("4_qeja1")]
+position = Vector2(1579, 941)
+scale = Vector2(2.75, 2.75)
+texture = ExtResource("5_7uhpi")
+
+[node name="SpaghettiPortrait" type="AnimatedSprite2D" parent="."]
+position = Vector2(546, 164)
+rotation = -0.16057
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_7n2im")
+animation = &"empty"
+
+[node name="Door" parent="." instance=ExtResource("8_q0fbj")]
+position = Vector2(1599, 1060)
+connected_room = "Inside"
+
+[node name="CollisionShape2D" parent="Door" index="0"]
+position = Vector2(-4.5, -3)
+shape = SubResource("RectangleShape2D_7sp6h")
+
+[node name="DialogueArea" parent="." instance=ExtResource("9_ner3r")]
+dialogue_key = "SpaghettiEmpty"
+
+[node name="CollisionShape2D" parent="DialogueArea" index="0"]
+position = Vector2(563, 332)
+shape = SubResource("RectangleShape2D_0f1qf")
+
+[editable path="Door"]
+[editable path="DialogueArea"]

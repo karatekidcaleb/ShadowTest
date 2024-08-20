@@ -1,15 +1,19 @@
 using Godot;
 using System;
+using System.Security.Principal;
+using System.Threading.Tasks;
 
 public partial class Main : Node2D
 {
 	private PackedScene level_loader;
-	private Level level;
+	public Level level;
+	public int[,] level_flags;// Used to initialize levels 
 	public override void _Ready()
 	{
 		ProcessMode = Node.ProcessModeEnum.Always;
 		LoadScene("Overworld");
 		level.GetNode<Area2D>("DoorToHouse").Connect("ChangeRoom", new Callable(this, MethodName.OnChangeRoom));
+        level_flags = new int[2, 2] { {0, 0}, {0, 0} };
 	}
 
 	public void LoadScene(string level_name)
@@ -33,20 +37,15 @@ public partial class Main : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		Render(delta);
 		if(Input.IsActionJustPressed("ui_cancel"))
 		{
 			GetTree().Quit();
 		}
+		Render(delta);
 	}
 
 	public void Render(double delta)
 	{
-		for (int i=0; i<GetChildCount(); i++)
-		{
-			if(GetChild(i) is not TextureRect)
-				GetChild<Node2D>(i).ZIndex = (int)GetChild<Node2D>(i).Position.Y;
-		}
 		if(level.Name == "Overworld")
 		{
 			level.GetNode<Camera2D>("Camera").Transform = level.GetNode<CharacterBody2D>("Beebop").Transform;
@@ -59,11 +58,14 @@ public partial class Main : Node2D
 		}
 	}
 
-	public void OnChangeRoom(string room)
+	public async void OnChangeRoom(string room)
 	{
-		GD.Print("Caught!");
+		this.GetNode<Transition>("Transition").RoomTransition("shrink");
+		await Task.Delay(700);
 		GetChild(GetChildCount()-1).QueueFree();
 		CallDeferred("LoadScene", room);
 		CallDeferred("ConnectDoors");
+		this.GetNode<Transition>("Transition").RoomTransition("grow");
+		await Task.Delay(700);
 	}
 }

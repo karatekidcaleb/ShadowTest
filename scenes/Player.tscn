@@ -34,10 +34,10 @@ sprite_frames = ExtResource("2_gx2xf")
 animation = &"idle"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-energy = 0.32
+energy = 0.5
 shadow_enabled = true
 texture = ExtResource("3_2bqxc")
-texture_scale = 2.5
+texture_scale = 5.06
 
 [node name="DialogueInteractionArea" type="Area2D" parent="."]
 process_mode = 3

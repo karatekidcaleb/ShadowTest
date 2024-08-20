@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://27m2rxrtmjyo"]
+[gd_scene load_steps=40 format=3 uid="uid://27m2rxrtmjyo"]
 
 [ext_resource type="Texture2D" uid="uid://d3opou03v3sls" path="res://assets/sprites/environment/background.png" id="1_1p0d0"]
 [ext_resource type="Script" path="res://scripts/Level.cs" id="1_os4kd"]
@@ -9,9 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://cyj56kiu7wjb4" path="res://assets/sprites/environment/burning_loop_1.png" id="5_gftdw"]
 [ext_resource type="PackedScene" uid="uid://dloyo4gev3uyo" path="res://scenes/Player.tscn" id="6_ior22"]
 [ext_resource type="PackedScene" uid="uid://bfw31q7b87gt8" path="res://scenes/Door.tscn" id="9_dx83m"]
-[ext_resource type="PackedScene" uid="uid://cgusnui4qhs7v" path="res://scenes/DialogueArea.tscn" id="10_adisp"]
 [ext_resource type="PackedScene" uid="uid://cyy4asofp6wtm" path="res://scenes/DialoguePlayer.tscn" id="11_npn7i"]
 [ext_resource type="PackedScene" uid="uid://4u3f20uwdhb0" path="res://scenes/SpinningWheel.tscn" id="12_o6b1h"]
+[ext_resource type="PackedScene" uid="uid://cgq1qim5nvxy6" path="res://scenes/Stairs.tscn" id="13_k74hf"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_d8srj"]
 polygon = PackedVector2Array(320, 144, 320, 112, 328, 104, 392, 104, 400, 112, 400, 120, 400, 144, 432, 144, 424, 88, 296, 72, 304, 144)
@@ -180,11 +180,14 @@ animations = [{
 "speed": 9.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mdi3k"]
-size = Vector2(479, 12)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qbcgd"]
+size = Vector2(7, 84)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_bfigy"]
-radius = 36.0555
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mdi3k"]
+size = Vector2(425, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7lnxl"]
+size = Vector2(35, 15)
 
 [node name="Inside" type="Node2D"]
 texture_filter = 1
@@ -197,6 +200,7 @@ zoom = Vector2(2.5, 2.5)
 
 [node name="Background" type="TextureRect" parent="."]
 show_behind_parent = true
+z_index = -415
 offset_right = 192.0
 offset_bottom = 108.0
 scale = Vector2(4, 4)
@@ -247,34 +251,44 @@ autoplay = "default"
 frame_progress = 0.599094
 
 [node name="Beebop" parent="." instance=ExtResource("6_ior22")]
-position = Vector2(392, 240)
+position = Vector2(208, 195)
 
 [node name="Walls" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
-polygon = PackedVector2Array(144, 424, 144, 208, 200, 152, 528, 152, 584, 168, 624, 224, 624, 424, 160, 424, 120, 432, 128, 464, 664, 456, 632, 144, 136, 144, 120, 432)
+polygon = PackedVector2Array(144, 424, 144, 208, 200, 152, 528, 152, 584, 168, 624, 224, 628, 426, 160, 424, 120, 432, 128, 464, 664, 456, 632, 144, 136, 144, 120, 432)
 
-[node name="Door" parent="." instance=ExtResource("9_dx83m")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2(570.5, 364)
+shape = SubResource("RectangleShape2D_qbcgd")
+
+[node name="OutsideDoor" parent="." instance=ExtResource("9_dx83m")]
 position = Vector2(395, 406)
 connected_room = "Overworld"
 
-[node name="CollisionShape2D" parent="Door" index="0"]
-position = Vector2(-11.5, 10)
+[node name="CollisionShape2D" parent="OutsideDoor" index="0"]
+position = Vector2(-38.5, 10)
 shape = SubResource("RectangleShape2D_mdi3k")
 
-[node name="DialogueArea" parent="." instance=ExtResource("10_adisp")]
-dialogue_key = "shit"
-
-[node name="CollisionShape2D" parent="DialogueArea" index="0"]
-position = Vector2(190, 357)
-shape = SubResource("CircleShape2D_bfigy")
-
 [node name="DialoguePlayer" parent="." instance=ExtResource("11_npn7i")]
+visible = false
 scene_text_file = "res://data/dialogue.json"
 
 [node name="SpinningWheel" parent="." instance=ExtResource("12_o6b1h")]
-position = Vector2(556, 167)
-scale = Vector2(0.855, 0.855)
+position = Vector2(535, 181)
+scale = Vector2(0.6, 0.6)
 
-[editable path="Door"]
-[editable path="DialogueArea"]
+[node name="Stairs" parent="." instance=ExtResource("13_k74hf")]
+position = Vector2(605, 254)
+scale = Vector2(1, 1.17416)
+
+[node name="UpstairsDoor" parent="." instance=ExtResource("9_dx83m")]
+position = Vector2(599, 405)
+connected_room = "upstairs"
+
+[node name="CollisionShape2D" parent="UpstairsDoor" index="0"]
+position = Vector2(8.5, 10.5)
+shape = SubResource("RectangleShape2D_7lnxl")
+
+[editable path="OutsideDoor"]
+[editable path="UpstairsDoor"]

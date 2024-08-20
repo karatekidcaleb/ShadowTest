@@ -1,0 +1,141 @@
+[gd_scene load_steps=21 format=3 uid="uid://ywookr46nrv"]
+
+[ext_resource type="Texture2D" uid="uid://cb8sxhgy3s6bq" path="res://assets/sprites/environment/pixel_snowflakes_0.png" id="1_w4s1j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0uyj"]
+atlas = ExtResource("1_w4s1j")
+region = Rect2(0, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2mim"]
+atlas = ExtResource("1_w4s1j")
+region = Rect2(9, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_on7og"]
+atlas = ExtResource("1_w4s1j")
+region = Rect2(18, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tqcu"]
+atlas = ExtResource("1_w4s1j")
+region = Rect2(27, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4m7s7"]
+atlas = ExtResource("1_w4s1j")
+region = Rect2(36, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6ln5"]
+atlas = ExtResource("1_w4s1j")
+region = Rect2(45, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqlty"]
+atlas = ExtResource("1_w4s1j")
+region = Rect2(45, 9, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5m7k"]
+atlas = ExtResource("1_w4s1j")
+region = Rect2(36, 9, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tifp7"]
+atlas = ExtResource("1_w4s1j")
+region = Rect2(27, 9, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sv0go"]
+atlas = ExtResource("1_w4s1j")
+region = Rect2(18, 9, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_065qt"]
+atlas = ExtResource("1_w4s1j")
+region = Rect2(9, 9, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8p18"]
+atlas = ExtResource("1_w4s1j")
+region = Rect2(0, 9, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qe0cu"]
+atlas = ExtResource("1_w4s1j")
+region = Rect2(0, 18, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eeuhq"]
+atlas = ExtResource("1_w4s1j")
+region = Rect2(9, 18, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmqcq"]
+atlas = ExtResource("1_w4s1j")
+region = Rect2(18, 18, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8ngp"]
+atlas = ExtResource("1_w4s1j")
+region = Rect2(27, 18, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qse1i"]
+atlas = ExtResource("1_w4s1j")
+region = Rect2(36, 18, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4ke5"]
+atlas = ExtResource("1_w4s1j")
+region = Rect2(45, 18, 9, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_40caj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m0uyj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2mim")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_on7og")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tqcu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4m7s7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6ln5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqlty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5m7k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tifp7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sv0go")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_065qt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8p18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qe0cu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eeuhq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wmqcq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8ngp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qse1i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4ke5")
+}],
+"loop": true,
+"name": &"snow",
+"speed": 5.0
+}]
+
+[node name="WeatherParticle" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_40caj")
+animation = &"snow"

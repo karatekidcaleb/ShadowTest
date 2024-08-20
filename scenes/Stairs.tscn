@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgq1qim5nvxy6"]
+
+[ext_resource type="Texture2D" uid="uid://dn10tyejucpqk" path="res://assets/sprites/environment/stairs.png" id="1_epy1u"]
+
+[node name="Stairs" type="Sprite2D"]
+position = Vector2(0, -100)
+texture = ExtResource("1_epy1u")
+offset = Vector2(0, 100)

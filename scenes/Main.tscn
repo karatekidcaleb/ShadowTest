@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1egsov7awvuo"]
+[gd_scene load_steps=3 format=3 uid="uid://b1egsov7awvuo"]
 
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_76527"]
+[ext_resource type="PackedScene" uid="uid://b15x8i6kd6rs7" path="res://scenes/Transition.tscn" id="2_2ih1h"]
 
 [node name="SubViewportContainer" type="SubViewportContainer"]
 offset_right = 1920.0
@@ -13,3 +14,5 @@ render_target_update_mode = 4
 
 [node name="Main" type="Node2D" parent="SubViewport"]
 script = ExtResource("1_76527")
+
+[node name="Transition" parent="SubViewport/Main" instance=ExtResource("2_2ih1h")]

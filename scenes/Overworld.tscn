@@ -21,17 +21,20 @@ size = Vector2(300, 273)
 script = ExtResource("1_fflks")
 
 [node name="Background" type="TextureRect" parent="."]
+z_index = -1020
+z_as_relative = false
 texture_repeat = 2
-offset_left = -584.0
-offset_top = -183.0
-offset_right = 7416.0
-offset_bottom = 5817.0
+offset_left = -1913.0
+offset_top = -1296.0
+offset_right = 10087.0
+offset_bottom = 8704.0
 scale = Vector2(0.415, 0.415)
 texture = ExtResource("2_l44rq")
 stretch_mode = 1
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.513726, 0.513726, 0.356863, 1)
+[node name="Darkness" type="CanvasModulate" parent="."]
+top_level = true
+color = Color(0.470588, 0.470588, 0.470588, 1)
 
 [node name="House" parent="." instance=ExtResource("3_kijuo")]
 position = Vector2(213, 144)
@@ -101,6 +104,8 @@ position = Vector2(-169, 268)
 
 [node name="DialoguePlayer" parent="." instance=ExtResource("7_h5xxw")]
 scene_text_file = "res://data/dialogue.json"
+
+[node name="Tree" parent="." instance=ExtResource("8_ku2k5")]
 
 [editable path="DoorToHouse"]
 [editable path="DialogueAreaLamp"]

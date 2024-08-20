@@ -22,7 +22,6 @@ public partial class Door : Area2D
 
 	public void OnBodyEntered(Node body)
 	{
-		GD.Print("hi!");
 		if(body.Name == "Beebop")
 		{
 			this.SetDeferred("Monitoring", false);

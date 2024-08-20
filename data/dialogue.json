@@ -8,7 +8,11 @@
 		"Data": ["ChoiceA", "ChoiceB"]
 	},
 	{
-		"Key": "shit",
-		"Data": ["fuck"]
+		"Key": "SpaghettiEmpty",
+		"Data": ["A painting of an empty dinner table with no spaghetti"]
+	},
+	{
+		"Key": "girlfriend",
+		"Data": ["You look so handsome!", "I'm FUCKIN RAW editing these jsons baby....", "and im cheating on you with json"]
 	}
 ]
