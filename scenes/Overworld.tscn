@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c1l3pu10j4d2c"]
+[gd_scene load_steps=15 format=3 uid="uid://c1l3pu10j4d2c"]
 
 [ext_resource type="Script" path="res://scripts/Level.cs" id="1_fflks"]
 [ext_resource type="Texture2D" uid="uid://biado3xb43nfa" path="res://assets/sprites/environment/bgLarge.png" id="2_l44rq"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cgusnui4qhs7v" path="res://scenes/DialogueArea.tscn" id="6_k7ej1"]
 [ext_resource type="PackedScene" uid="uid://cyy4asofp6wtm" path="res://scenes/DialoguePlayer.tscn" id="7_h5xxw"]
 [ext_resource type="PackedScene" uid="uid://d3xrg0dn378i4" path="res://scenes/Tree.tscn" id="8_ku2k5"]
+[ext_resource type="Texture2D" uid="uid://b33bev4xemb3u" path="res://assets/sprites/environment/mountain1.png" id="9_5pf7w"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_id3xq"]
 
@@ -16,6 +17,12 @@ radius = 38.0526
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_quasw"]
 size = Vector2(300, 273)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4x216"]
+polygon = PackedVector2Array(-604, 683, -454, 708, -297, 713, 26, 732, 317, 908, 435, 964, 565, 1000, 432, 999, 301, 937, 7, 756, -340, 724, -454, 724)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ogwrs"]
+polygon = PackedVector2Array(208, 758, 272, 804, 341, 871, 464, 903, 504, 983, 592, 1036, 629, 985, 605, 927, 461, 865, 381, 852, 306, 793)
 
 [node name="Overworld" type="Node2D"]
 script = ExtResource("1_fflks")
@@ -103,9 +110,31 @@ position = Vector2(1191, -152)
 position = Vector2(-169, 268)
 
 [node name="DialoguePlayer" parent="." instance=ExtResource("7_h5xxw")]
-scene_text_file = "res://data/dialogue.json"
+visible = false
+scene_text_file = "res://data/Overworld.json"
 
 [node name="Tree" parent="." instance=ExtResource("8_ku2k5")]
+
+[node name="Mountain" type="StaticBody2D" parent="."]
+
+[node name="Mountain" type="CollisionPolygon2D" parent="Mountain"]
+polygon = PackedVector2Array(622, 844, 352, 727, 251, 708, 12, 692, -321, 654, -442, 638, -583, 616, -705, 625, -629, 727, -553, 759, -384, 794, -149, 838, 460, 1095, 676, 1070, 736, 940)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Mountain"]
+modulate = Color(0.266667, 0.266667, 0.266667, 0.686275)
+occluder = SubResource("OccluderPolygon2D_4x216")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="Mountain"]
+modulate = Color(0.266667, 0.266667, 0.266667, 0.686275)
+occluder = SubResource("OccluderPolygon2D_ogwrs")
+
+[node name="MountainSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(46, 829)
+rotation = -0.16057
+scale = Vector2(7.405, 7.305)
+skew = -0.541052
+texture = ExtResource("9_5pf7w")
 
 [editable path="DoorToHouse"]
 [editable path="DialogueAreaLamp"]

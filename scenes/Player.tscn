@@ -37,7 +37,7 @@ animation = &"idle"
 energy = 0.5
 shadow_enabled = true
 texture = ExtResource("3_2bqxc")
-texture_scale = 5.06
+texture_scale = 2.5
 
 [node name="DialogueInteractionArea" type="Area2D" parent="."]
 process_mode = 3

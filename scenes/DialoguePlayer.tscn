@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://scripts/DialoguePlayer.cs" id="1_qp2v6"]
 [ext_resource type="Texture2D" uid="uid://ce6n8i4xclswm" path="res://assets/sprites/ui/dialogueBackgroundBig.png" id="2_pmkrp"]
 [ext_resource type="FontFile" uid="uid://be447ro04o3a5" path="res://assets/fonts/m3x6.ttf" id="3_o1q1q"]
-[ext_resource type="AudioStream" uid="uid://b63ei1cyp8obn" path="res://assets/audio/wet-fart-01.mp3" id="4_e4d25"]
-[ext_resource type="AudioStream" uid="uid://1jknyeb1bb1i" path="res://assets/audio/wet-fart-02.mp3" id="5_47w2h"]
-[ext_resource type="AudioStream" uid="uid://d22ya7q2chjsv" path="res://assets/audio/wet-fart-03.mp3" id="6_53ejk"]
-[ext_resource type="AudioStream" uid="uid://cnvqlqx82xovi" path="res://assets/audio/wet-fart-04.mp3" id="7_y65kt"]
-[ext_resource type="AudioStream" uid="uid://n2l1fqouuvo7" path="res://assets/audio/wet-fart-05.mp3" id="8_h6b75"]
+[ext_resource type="AudioStream" uid="uid://bnq07s8rvamtd" path="res://assets/audio/lebron-james-01.mp3" id="4_ye6fe"]
+[ext_resource type="AudioStream" uid="uid://dnkogk77r7gy4" path="res://assets/audio/lebron-james-02.mp3" id="5_lv18s"]
+[ext_resource type="AudioStream" uid="uid://kirfmhd5v4th" path="res://assets/audio/lebron-james-03.mp3" id="6_rrhm7"]
+[ext_resource type="AudioStream" uid="uid://ckc3mx83f1kj6" path="res://assets/audio/lebron-james-04.mp3" id="7_wrn4o"]
+[ext_resource type="AudioStream" uid="uid://cf6ft660bgiqd" path="res://assets/audio/lebron-james-05.mp3" id="8_bi663"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bnvy0"]
 line_spacing = 12.0
@@ -58,16 +58,16 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Snippet1" type="AudioStreamPlayer" parent="AudioMixer"]
-stream = ExtResource("4_e4d25")
+stream = ExtResource("4_ye6fe")
 
 [node name="Snippet2" type="AudioStreamPlayer" parent="AudioMixer"]
-stream = ExtResource("5_47w2h")
+stream = ExtResource("5_lv18s")
 
 [node name="Snippet3" type="AudioStreamPlayer" parent="AudioMixer"]
-stream = ExtResource("6_53ejk")
+stream = ExtResource("6_rrhm7")
 
 [node name="Snippet4" type="AudioStreamPlayer" parent="AudioMixer"]
-stream = ExtResource("7_y65kt")
+stream = ExtResource("7_wrn4o")
 
 [node name="Snippet5" type="AudioStreamPlayer" parent="AudioMixer"]
-stream = ExtResource("8_h6b75")
+stream = ExtResource("8_bi663")

@@ -31,8 +31,6 @@ public partial class Transition : AnimatedSprite2D
 			Visible = true;
 			Scale = new Vector2(20.0f, 20.0f);
 			this.Position = GetParent<Main>().level.GetNode<Player>("Beebop").Position;
-			this.Position = new Vector2(this.Position.X, this.Position.Y);
-			GD.Print("shrinkin now" + this.Scale.Length() + " : " + timer_signal_received);
 			while(!timer_signal_received)
 			{
 				if(Scale.X > 1.5f)
@@ -47,12 +45,10 @@ public partial class Transition : AnimatedSprite2D
 		{
 			this.GetNode<AudioStreamPlayer>("Exit").Play();
 			timer_signal_received = false;
-			GD.Print("growing now" + this.Scale.Length() + " : " + timer_signal_received);
 			this.Animation = "default";
 			while(!timer_signal_received)
 			{
 				this.Position = GetParent<Main>().level.GetNode<Player>("Beebop").Position;
-				this.Position = new Vector2(this.Position.X, this.Position.Y);
 				if(Scale.X < 80.0f)
 					Scale = new Vector2(Scale.X*1.04f, Scale.Y*1.04f);
 				else
